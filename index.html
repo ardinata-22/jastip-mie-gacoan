@@ -1,93 +1,115 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jastip Gacoan - Premium</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jastip Gacoan</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100"><div class="bg-white p-4 shadow flex justify-between">
-  <h1 class="font-bold">🍜 Jastip Gacoan</h1>
-  <div>🛒 <span id="count">0</span></div>
-</div><div class="p-4 space-y-3"><h2 class="font-bold">Mie</h2><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Mie Gacoan - Rp13.000</p>
-<button onclick="openLevel('Mie Gacoan',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Mie Hompimpa - Rp13.000</p>
-<button onclick="openLevel('Mie Hompimpa',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Mie Suit - Rp13.000</p>
-<button onclick="openLevel('Mie Suit',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><h2 class="font-bold mt-4">Dimsum</h2><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Udang Rambutan - Rp13.000</p>
-<button onclick="addItemDirect('Udang Rambutan',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Lumpia Udang - Rp13.000</p>
-<button onclick="addItemDirect('Lumpia Udang',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Udang Keju - Rp13.000</p>
-<button onclick="addItemDirect('Udang Keju',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Dimsum - Rp13.000</p>
-<button onclick="addItemDirect('Dimsum',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div><div class="bg-white p-3 rounded shadow flex justify-between">
-<p>Pangsit Goreng - Rp13.000</p>
-<button onclick="addItemDirect('Pangsit Goreng',13000)" class="bg-red-500 text-white px-2 rounded">+</button>
-</div></div><!-- Modal Level --><div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-<div class="bg-white p-4 rounded">
-<p>Pilih Level</p>
-<button onclick="addItem(0)">0</button>
-<button onclick="addItem(1)">1</button>
-<button onclick="addItem(2)">2</button>
-<button onclick="addItem(3)">3</button>
-<button onclick="addItem(4)">4</button>
-<button onclick="addItem(6,1500)">6 +1500</button>
-<button onclick="addItem(8,1500)">8 +1500</button>
-</div>
-</div><div class="fixed bottom-0 left-0 right-0 bg-white p-4">
-<div id="cart"></div>
-<p>Total: Rp <span id="total">0</span></p>
-<button onclick="checkout()" class="bg-green-500 text-white w-full">Pesan Sekarang</button>
-</div><script>
-let total=0;
-let items=[];
-let currentName='';
-let basePrice=0;
+<body class="bg-gray-100">
 
-function openLevel(n,h){
-currentName=n;
-basePrice=h;
-document.getElementById('modal').classList.remove('hidden');
-}
+  <!-- Header -->
+  <div class="bg-white p-4 shadow text-center">
+    <h1 class="text-xl font-bold">🍜 Jastip Mie Gacoan</h1>
+    <p class="text-sm text-gray-500">Semua harga sudah termasuk PPN</p>
+  </div>
 
-function addItem(level,extra=0){
-let price=basePrice+extra;
-let text=currentName+' lvl '+level;
-items.push(text);
-total+=price;
-render();
-document.getElementById('modal').classList.add('hidden');
-}
+  <!-- Menu -->
+  <div class="p-4 space-y-4">
 
-function addItemDirect(n,h){
-items.push(n);
-total+=h;
-render();
-}
+    <h2 class="font-bold">Mie</h2>
 
-function render(){
-let html='';
-items.forEach((i,x)=>html+=(x+1)+'. '+i+'<br>');
-document.getElementById('cart').innerHTML=html;
-document.getElementById('total').innerText=total;
-document.getElementById('count').innerText=items.length;
-}
+    <!-- Item -->
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <div>
+        <p class="font-semibold">Mie Gacoan</p>
+        <p class="text-sm text-gray-500">Level 0-8</p>
+        <p class="text-red-500 font-bold">Rp13.000</p>
+      </div>
+      <button onclick="addItem('Mie Gacoan',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
 
-function checkout(){
-if(items.length==0){alert('Pilih dulu!');return;}
-let text='Pesanan:%0A';
-items.forEach((i,x)=>text+=(x+1)+'. '+i+'%0A');
-text+='%0ATotal: '+total;
-window.open('https://wa.me/6285746959923?text='+OrderJastip);
-}
-</script></body>
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <div>
+        <p class="font-semibold">Mie Hompimpa</p>
+        <p class="text-sm text-gray-500">Level 0-8</p>
+        <p class="text-red-500 font-bold">Rp13.000</p>
+      </div>
+      <button onclick="addItem('Mie Hompimpa',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <div>
+        <p class="font-semibold">Mie Suit</p>
+        <p class="text-sm text-gray-500">Level 0-8</p>
+        <p class="text-red-500 font-bold">Rp13.000</p>
+      </div>
+      <button onclick="addItem('Mie Suit',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+    <h2 class="font-bold mt-4">Dimsum</h2>
+
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <p class="font-semibold">Udang Rambutan - <span class="text-red-500">Rp13.000</span></p>
+      <button onclick="addItem('Udang Rambutan',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <p class="font-semibold">Lumpia Udang - <span class="text-red-500">Rp13.000</span></p>
+      <button onclick="addItem('Lumpia Udang',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <p class="font-semibold">Udang Keju - <span class="text-red-500">Rp13.000</span></p>
+      <button onclick="addItem('Udang Keju',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <p class="font-semibold">Dimsum - <span class="text-red-500">Rp13.000</span></p>
+      <button onclick="addItem('Dimsum',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+    <div class="bg-white p-3 rounded-xl shadow flex justify-between items-center">
+      <p class="font-semibold">Pangsit Goreng - <span class="text-red-500">Rp13.000</span></p>
+      <button onclick="addItem('Pangsit Goreng',13000)" class="bg-red-500 text-white px-3 py-1 rounded">+</button>
+    </div>
+
+  </div>
+
+  <!-- Cart -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow">
+    <p class="font-bold">Total: Rp <span id="total">0</span></p>
+    <button onclick="checkout()" class="bg-green-500 text-white w-full py-2 rounded mt-2">Pesan via WhatsApp</button>
+  </div>
+
+  <script>
+    let total = 0;
+    let items = [];
+
+    function addItem(nama, harga) {
+      total += harga;
+      items.push(nama);
+      document.getElementById('total').innerText = total.toLocaleString('id-ID');
+    }
+
+    function checkout() {
+      if(items.length === 0){
+        alert('Pilih menu dulu!');
+        return;
+      }
+
+      let pesan = 'Halo, saya mau pesan:%0A';
+      items.forEach((item, i) => {
+        pesan += (i+1)+'. '+item+'%0A';
+      });
+      pesan += '%0ATotal: Rp ' + total.toLocaleString('id-ID');
+
+      let nomor = '6285746959923'; // GANTI NOMOR KAMU
+      let url = 'https://wa.me/' + 6285746959923 + '?text=' +orderjastip;
+
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
 </html>
